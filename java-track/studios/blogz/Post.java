@@ -3,7 +3,7 @@ package blogz;
 import java.time.Instant;
 import java.util.Date;
 
-public class Post {
+public class Post extends Entity {
 	
 	private String body, title;
 	private User author;
@@ -11,6 +11,7 @@ public class Post {
 	private Date modified;
 	
 	public Post(String body, String title, User author) {
+		super();
 		this.body = body;
 		this.title = title;
 		this.author = author;
