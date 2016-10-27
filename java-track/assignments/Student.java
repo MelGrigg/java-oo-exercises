@@ -38,14 +38,13 @@ public class Student {
 		int avCost = 20000;
 		int credPerSem = 15;
 		double tuition = (this.credits / credPerSem) * avCost;
-		if (this.credits % credPerSem > 0) {
-			tuition += avCost;
-		}
+		int extra = this.credits % credPerSem;
+		tuition += 1333.33 * extra;
 		return tuition;
 	}
 	
-	public Student createLegacy(Student ss) {
-		return new Student(this, ss);
+	public Student createLegacy(Student s1, Student s2) {
+		return new Student(s1, s2);
 	}
 	
 	public String getClassStanding() {
