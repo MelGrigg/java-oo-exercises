@@ -1,7 +1,5 @@
 package blogz;
 
-import java.util.ArrayList;
-
 abstract class Entity {
 	
 	private final int uid;
@@ -10,6 +8,18 @@ abstract class Entity {
 	public Entity() {
 		this.uid = Entity.count;
 		Entity.count++;
+	}
+	
+	public int getUID() {
+		return this.uid;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Entity))
+			return false;
+		Entity x = (Entity)other;
+		return (this.uid == x.getUID());
 	}
 
 }

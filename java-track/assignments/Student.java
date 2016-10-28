@@ -74,6 +74,18 @@ public class Student {
 		return this.gpa;
 	}
 	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Student))
+			return false;
+		Student x = (Student)other;
+		return ((this.getName().equals(x.getName())) &&
+				(this.id == x.getStudentID()) &&
+				(this.credits == x.getCredits()) &&
+				(this.gpa == getGPA()));
+	}
+	
+	@Override
 	public String toString() {
 		return this.getName() + " " + this.id;
 	}

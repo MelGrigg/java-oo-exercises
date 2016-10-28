@@ -58,6 +58,16 @@ public class Course {
 		return this.remainingSeats;
 	}
 	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Course))
+			return false;
+		Course x = (Course)other;
+		return ((this.name == x.getName()) &&
+				(this.credits == x.getCredits()));
+	}
+	
+	@Override
 	public String toString() {
 		return this.name + " | " + this.credits;
 	}
