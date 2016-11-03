@@ -48,11 +48,10 @@ public class Javagram {
 		
 		Picture processed = picture;
 		boolean doFilter = true;
-		while (doFilter) {
-			int select = displayFilterMenu(in);
-			
+		while (doFilter) {			
 			Filter filter = null;
 			do {
+				int select = displayFilterMenu(in);
 				try {
 					filter = getFilter(select);
 				} catch (RuntimeException e) {
@@ -78,26 +77,32 @@ public class Javagram {
 		// save image, if desired
 		String fileName = "";
 		
-		System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
-		
-		fileName = in.next();
-
-		boolean cont = false;
-		if (fileName.equals("exit")) {
-			System.out.println("Image not saved");
-		} else if (fileName.equals(originalName)) {
-			String selection = "";
-			do {
-				System.out.println("Save under same name?  y/n");
-				selection = in.next();
-			} while (!((selection.equals("y")) || (selection.equals("n"))));
-			if (selection.equals("y"))
-				cont = true;
-		} else {
-			cont = true;
+		boolean cont = true;
+		boolean save = false;
+		while (cont) {
+			System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
+			
+			fileName = in.next();
+	
+			if (fileName.equals("exit")) {
+				System.out.println("Image not saved");
+			} else if (fileName.equals(originalName)) {
+				String selection = "";
+				do {
+					System.out.println("Save under same name?  y/n");
+					selection = in.next();
+				} while (!((selection.equals("y")) || (selection.equals("n"))));
+				if (selection.equals("y")) {
+					save = true;
+					cont = false;
+				}
+			} else {
+				cont = false;
+				save = true;
+			}
 		}
 		
-		if (cont) {
+		if (save) {
 			String absFileName = dir + File.separator + fileName;
 			processed.save(absFileName);
 			System.out.println("Image saved to " + absFileName);
